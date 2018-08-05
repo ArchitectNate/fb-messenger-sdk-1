@@ -84,7 +84,7 @@ class CallbackEventFactory
         $recipientId = $payload['recipient']['id'];
         $timestamp = $payload['timestamp'];
 
-        return new MessageEvent($senderId, $recipientId, $timestamp, $message);
+        return new MessageEvent($senderId, $recipientId, $timestamp, $message, $payload);
     }
 
     /**
