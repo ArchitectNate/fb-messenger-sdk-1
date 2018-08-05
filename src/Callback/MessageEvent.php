@@ -16,6 +16,11 @@ class MessageEvent extends CallbackEvent
      * @var Message
      */
     private $message;
+    
+    /**
+     * @var array
+     */
+    private $payload;
 
     /**
      * @param string $senderId
@@ -23,11 +28,12 @@ class MessageEvent extends CallbackEvent
      * @param int $timestamp
      * @param Message $message
      */
-    public function __construct($senderId, $recipientId, $timestamp, Message $message)
+    public function __construct($senderId, $recipientId, $timestamp, Message $message, array $payload)
     {
         parent::__construct($senderId, $recipientId);
         $this->timestamp = $timestamp;
         $this->message = $message;
+        $this->payload = $payload;
     }
 
     /**
@@ -68,6 +74,14 @@ class MessageEvent extends CallbackEvent
     public  function getQuickReplyPayload()
     {
         return $this->message->getQuickReply();
+    }
+    
+    /**
+     * @return array
+     */
+    public  function getPayload()
+    {
+        return $this->payload;
     }
 
     /**
